@@ -92,5 +92,81 @@ const s = new Circle("red" , 4) ;
 console.log(s.area()) ;
 
 // Inheritance 
+// Inheritance allows one class (child) to extend another (parent) 
+// and reuse its properties and methods.
+// Using super() Keyword
+
+class Animal {
+
+    papa: string  ;
+
+    constructor( papa: string) {
+        this.papa = papa ;
+    }
+
+    move(): void {
+        console.log(`${this.papa} is moving...`) ;
+    }
+
+
+}
+
+
+class Dog extends Animal {
+
+    bark(): void {
+        console.log(`${this.papa} : woff woff`) ;
+    }
+
+}
+
+class Bird extends Animal {
+
+    canfly: boolean ;
+    constructor(name: string , canfly: boolean) {
+
+        super(name) ;
+
+        this.canfly = canfly ;
+
+
+    }
+
+    fly() : void {
+
+        if(this.canfly) {
+            console.log(`${this.papa} can fly`) ;
+        }
+
+        else {
+            console.log(`${this.papa} cannot fly but can walk`) ;
+        }
+    }
+
+
+}
+
+const d = new Dog("pinky") ;
+
+const f = new Bird("parrot" , true) ;
+
+f.fly() ;
+f.move() ;
+
 
 // Method Over-riding
+// TypeScript doesn’t support true runtime method overloading like Java or C++.
+ // But it supports function signature overloading — multiple signatures for the same method.
+
+ class Calculator {
+  add(a: number, b: number): number;
+  add(a: string, b: string): string;
+
+  add(a: any, b: any): any {
+    return a + b;
+  }
+}
+
+const calc = new Calculator();
+console.log(calc.add(10, 20));     // 30
+console.log(calc.add("Hello, ", "World!")); // "Hello, World!"
